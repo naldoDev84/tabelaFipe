@@ -35,7 +35,6 @@ public class Principal {
                 endpoint = "motos/marcas/";
                 break;
             case 3:
-
                 endpoint = "caminhoes/marcas/";
                 break;
             default:
@@ -48,7 +47,9 @@ public class Principal {
         List<DadosVeiculo> listaMarcas =
                 Arrays.asList(converter.converter(jsonMarcas, DadosVeiculo[].class));
 
-        listaMarcas.forEach(System.out::println);
+        listaMarcas.stream()
+                        .sorted(Comparator.comparing(DadosVeiculo::codigo))
+                                .forEach(System.out::println);
 
         //Parte 2
         System.out.print("\nDigite o código do veículo: ");
@@ -63,7 +64,9 @@ public class Principal {
 
         List<DadosVeiculo> listaModelos = respostaModelo.modelos();
 
-        listaModelos.forEach(System.out::println);
+        listaModelos.stream()
+                        .sorted(Comparator.comparing(DadosVeiculo::codigo))
+                                .forEach(System.out::println);
 
         //Parte 3
         System.out.println("\nDigite um trecho do nome do veículo: ");
